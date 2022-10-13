@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /* background-image: url("public/corn.gif"); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+#app-container {
+  height: 100vh;
+  width: 563px;
+  background-color: blue;
+}
+
+.pumpkin-image {
+  position: absolute;
+  bottom: 0;
+  margin-left: 31.5px;
+  opacity: 0.2;
+}
+
+.pumpkin-main {
+  width: 500px;
+}
