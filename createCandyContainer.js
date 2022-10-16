@@ -40,6 +40,9 @@ function createReferencePoint(x, y, width, height, rotation) {
   let referencePoint = Matter.Bodies.rectangle(x, y, width, height, {
     isStatic: true,
     label: "refPoint",
+    render: {
+      // fillStyle: "transparent",
+    },
   });
   Matter.Body.rotate(referencePoint, rotation);
   return referencePoint;
@@ -55,6 +58,15 @@ function returnReferencePoints() {
   }
 
   push(createReferencePoint(100, 800, 20, 20, 0));
+  push(createReferencePoint(140, 800, 20, 20, 0));
+  push(createReferencePoint(180, 810, 20, 20, 0));
+  push(createReferencePoint(220, 810, 20, 20, 0));
+  push(createReferencePoint(260, 810, 20, 20, 0));
+  push(createReferencePoint(300, 810, 20, 20, 0));
+  push(createReferencePoint(340, 810, 20, 20, 0));
+  push(createReferencePoint(380, 810, 20, 20, 0));
+  push(createReferencePoint(420, 800, 20, 20, 0));
+  push(createReferencePoint(460, 800, 20, 20, 0));
 
   return arrayOfReferencePoints;
 }

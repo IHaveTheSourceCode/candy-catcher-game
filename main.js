@@ -27,7 +27,7 @@ let Engine = Matter.Engine,
 let engine = Engine.create();
 
 // creates candies
-let candyAmount = 5;
+let candyAmount = 50;
 function addMoreCandies() {
   if (candyAmount < 10) {
     candyAmount += 1;
@@ -85,10 +85,26 @@ Composite.add(engine.world, returnCandyContainer());
 // creates and adds reference points for custom events
 Composite.add(engine.world, returnReferencePoints());
 
+// holds game stats
+
 Matter.Events.on(engine, "collisionStart", (e) => {
   // console.log(e.pairs[0].bodyA.label);
   if (e.pairs[0]) {
-    console.log(e.pairs[0].bodyB.label);
+    if (
+      e.pairs[0].bodyB.label == "goodCandy" &&
+      e.pairs[0].bodyA.label == "refPoint"
+    ) {
+      // deletes candy
+      console.log("+1 point");
+      Matter.World.remove(engine.world, e.pairs[0].bodyB);
+    }
+    if (
+      e.pairs[0].bodyB.label == "badCandy" &&
+      e.pairs[0].bodyA.label == "refPoint"
+    ) {
+      console.log("-1 point");
+      Matter.World.remove(engine.world, e.pairs[0].bodyB);
+    }
   }
 });
 x();
