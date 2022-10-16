@@ -16,14 +16,13 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
+  user-select: none;
 }
 
 #app-container {
   height: 0;
-  position: relative;
   top: -563px;
   width: 563px;
-  background-color: blue;
 }
 
 .pumpkin-image {
@@ -31,19 +30,23 @@ body {
   top: 978px;
   bottom: 0;
   margin-left: 31.5px;
-  opacity: 0.2;
 }
 
 .pumpkin-main {
-  width: 500px;
-  position: relative;
-  bottom: 20px;
+  width: 510px;
+  left: 10px;
+  bottom: 35px;
+  position: absolute;
+  opacity: 0.4;
 }
 
 canvas {
   border: 15px solid #f16333;
   border-top: none;
   border-bottom: none;
-  margin-left: -15px;
-  margin-right: -15px;
+  margin-left: 25px;
+  margin-bottom: 45px;
+  position: absolute;
 }
+
+/* resets button styles */

@@ -62,7 +62,7 @@ function spawnCandies(candies_amount) {
       candiesArr.push(wideCandy());
     }
   }
-
+  console.log(candiesArr);
   return candiesArr;
 }
 
