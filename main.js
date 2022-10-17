@@ -1,16 +1,27 @@
 import "./style.css";
+
 import Matter, { World } from "matter-js";
+
+// import container for candies
 import {
   returnCandyContainer,
   returnReferencePoints,
 } from "./createCandyContainer";
-import {
-  cornCandy,
-  sweetCandy,
-  createRoundCandy,
-  createCandy,
-} from "./createCandies";
+
+// import candy elements
+import { currentTime } from "./createCandies";
+
 import { spawnCandies, appendCandies } from "./spawnCandies";
+
+// import sounds
+import {
+  buttonClick,
+  candyNegative,
+  candyPositive1,
+  candyPositive2,
+  gameOver,
+  mainTheme,
+} from "./createSounds";
 
 // module aliases
 let Engine = Matter.Engine,
@@ -27,7 +38,7 @@ let Engine = Matter.Engine,
 let engine = Engine.create();
 
 // creates candies
-let candyAmount = 50;
+let candyAmount = 10;
 function addMoreCandies() {
   if (candyAmount < 10) {
     candyAmount += 1;
@@ -38,7 +49,7 @@ function addMoreCandies() {
 let x = function () {
   appendCandies(engine, spawnCandies(candyAmount));
 };
-// setInterval(x, 2000);
+// setInterval(x, 1000);
 
 // create a renderer
 let render = Render.create({
@@ -86,25 +97,62 @@ Composite.add(engine.world, returnCandyContainer());
 Composite.add(engine.world, returnReferencePoints());
 
 // holds game stats
+let lives = 3;
+
+// boolean for checking for sound activation
+let soundActive = false;
+
+// for swapping sound effects
+let soundSwap = 0;
 
 Matter.Events.on(engine, "collisionStart", (e) => {
-  // console.log(e.pairs[0].bodyA.label);
   if (e.pairs[0]) {
     if (
       e.pairs[0].bodyB.label == "goodCandy" &&
       e.pairs[0].bodyA.label == "refPoint"
     ) {
-      // deletes candy
-      console.log("+1 point");
+      // logic for when good candy enters container
       Matter.World.remove(engine.world, e.pairs[0].bodyB);
+      if (soundActive) {
+        if (soundSwap == 0) {
+          candyPositive1().play();
+          soundSwap = 1;
+        } else {
+          candyPositive2().play();
+          soundSwap = 0;
+        }
+      }
     }
     if (
       e.pairs[0].bodyB.label == "badCandy" &&
       e.pairs[0].bodyA.label == "refPoint"
     ) {
-      console.log("-1 point");
+      // logic for when bad candy enters container
       Matter.World.remove(engine.world, e.pairs[0].bodyB);
+      if (soundActive) {
+        candyNegative().play();
+      }
     }
   }
 });
 x();
+
+// sets main theme music
+const mainThemeMusic = mainTheme();
+mainThemeMusic.loop = "loop";
+console.log(mainThemeMusic);
+mainTheme.volume = 0.01;
+
+// add event that will toggle all sounds on/off
+document.querySelector(".toggle-sound").addEventListener("click", function () {
+  let img = document.querySelector(".sound-image");
+  if (soundActive) {
+    img.src = "../volume-off-icon.png";
+    soundActive = false;
+    mainThemeMusic.pause();
+  } else {
+    img.src = "../volume-on-icon.png";
+    soundActive = true;
+    mainThemeMusic.play();
+  }
+});

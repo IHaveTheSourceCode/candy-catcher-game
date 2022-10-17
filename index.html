@@ -7,19 +7,34 @@
     <title>Vite App</title>
   </head>
   <body>
+    <audio controls autoplay>
+      <source src="../game-theme.mp3" type="audio/mpeg" />
+      Your browser does not support the audio tag.
+    </audio>
+    <div class="scoreboard">
+      <div class="score">Score:</div>
+      <div class="game-speed">Game speed:</div>
+      <div class="candies-count">Candies quanity:</div>
+    </div>
     <div id="app-container">
       <nav id="app-nav">
-        <button class="toogle-sound"></button>
-        <button class="pause-game"></button>
+        <button class="toggle-sound">
+          <img
+            alt="toggle sound button"
+            src="../volume-off-icon.png"
+            class="sound-image"
+          />
+        </button>
       </nav>
-      <div class="pumpkin-image">
+      <!-- <div class="pumpkin-image">
         <img
           src="../my-image.png"
           alt="pumpkin."
           class="pumpkin-main"
           draggable="false"
         />
-      </div>
+      </div> -->
     </div>
+    <img class="alert-image" src="../small-screens-info.png" alt="" />
   </body>
 </html>

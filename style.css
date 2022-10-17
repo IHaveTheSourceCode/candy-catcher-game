@@ -1,3 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Creepster&family=Playfair+Display&display=swap");
+
+:root {
+  --font-halloween: "Creepster", cursive;
+  --font-elegant: "Playfair Display", serif;
+
+  --color-orange: #ee5f00;
+}
+
 * {
   margin: 0;
 }
@@ -6,14 +15,12 @@ body {
   width: 100vw;
   height: 100vh;
   min-height: 1000px;
-  background-color: red;
+  background-color: #431752;
   display: flex;
   justify-content: center;
-  /* background-image: url("public/corn.gif"); */
   background-image: url("../halloween-background.jpg");
   background-position: center;
   background-size: contain;
-  background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
   user-select: none;
@@ -41,7 +48,7 @@ body {
 }
 
 canvas {
-  border: 15px solid #f16333;
+  border: 15px solid var(--color-orange);
   border-top: none;
   border-bottom: none;
   margin-left: 25px;
@@ -49,4 +56,54 @@ canvas {
   position: absolute;
 }
 
-/* resets button styles */
+.scoreboard {
+  font-size: 3rem;
+  color: var(--color-orange);
+  font-family: var(--font-halloween);
+  margin-top: 15px;
+  margin-right: 30rem;
+}
+
+.scoreboard > div {
+  margin-top: 15px;
+}
+
+.toggle-sound {
+  border: none;
+  width: 40px;
+  height: 40px;
+  margin-left: 250px;
+  margin-top: 25px;
+  background-color: transparent;
+}
+
+.toggle-sound > img:hover {
+  cursor: pointer;
+}
+
+.toggle-sound > img {
+  width: 40px;
+}
+
+.alert-image {
+  display: none;
+}
+
+audio {
+  width: 0;
+}
+
+@media (max-width: 1500px) {
+  body {
+    background-size: cover;
+  }
+}
+
+@media (max-width: 1000px) {
+  .alert-image {
+    z-index: 1;
+    display: block;
+    width: 1000px;
+    position: absolute;
+  }
+}

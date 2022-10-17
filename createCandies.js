@@ -176,4 +176,5 @@ export {
   wideCandy,
   createRoundCandy,
   createCandy,
+  currentTime,
 };
