@@ -1,6 +1,6 @@
 import Matter from "matter-js";
 
-let currentTime = 0.15;
+let currentTime = [0.15];
 
 // function that creates candies with custom shapes
 // path and img src must be strings
@@ -58,7 +58,7 @@ let cornCandy = function () {
     "../candy-corn.png",
     0.15,
     0.15,
-    currentTime
+    currentTime[0]
   );
 
   cornCandy.label = "badCandy";
@@ -66,10 +66,10 @@ let cornCandy = function () {
   return cornCandy;
 };
 let sweetCandy = function () {
-  return createRoundCandy(25, "../candy-sweet.png", 0.1, 0.1, currentTime);
+  return createRoundCandy(25, "../candy-sweet.png", 0.1, 0.1, currentTime[0]);
 };
 let pokemonCandy = function () {
-  return createRoundCandy(20, "../candy-pokemon.png", 0.2, 0.2, currentTime);
+  return createRoundCandy(20, "../candy-pokemon.png", 0.2, 0.2, currentTime[0]);
 };
 let pappermintBlue = function () {
   return createRoundCandy(
@@ -77,7 +77,7 @@ let pappermintBlue = function () {
     "../pappermint-blue.png",
     0.08,
     0.08,
-    currentTime
+    currentTime[0]
   );
 };
 let pappermintGreen = function () {
@@ -86,7 +86,7 @@ let pappermintGreen = function () {
     "../pappermint-green.png",
     0.08,
     0.08,
-    currentTime
+    currentTime[0]
   );
 };
 let pappermintPink = function () {
@@ -95,11 +95,17 @@ let pappermintPink = function () {
     "../pappermint-pink.png",
     0.08,
     0.08,
-    currentTime
+    currentTime[0]
   );
 };
 let pappermintRed = function () {
-  return createRoundCandy(23, "../pappermint-red.png", 0.06, 0.06, currentTime);
+  return createRoundCandy(
+    23,
+    "../pappermint-red.png",
+    0.06,
+    0.06,
+    currentTime[0]
+  );
 };
 let goldenApple = function () {
   return createCandy(
@@ -107,7 +113,7 @@ let goldenApple = function () {
     "../golden-apple.png",
     0.4,
     0.4,
-    currentTime
+    currentTime[0]
   );
 };
 let kawaiiCorn = function () {
@@ -116,7 +122,7 @@ let kawaiiCorn = function () {
     "../kawaii-corn-candy.png",
     0.1,
     0.1,
-    currentTime
+    currentTime[0]
   );
 };
 let candyGhost = function () {
@@ -125,7 +131,7 @@ let candyGhost = function () {
     "../candy-ghost.png",
     0.1,
     0.1,
-    currentTime
+    currentTime[0]
   );
 };
 let marioShroom = function () {
@@ -134,7 +140,7 @@ let marioShroom = function () {
     "../mario-shroom.png",
     0.1,
     0.1,
-    currentTime
+    currentTime[0]
   );
 };
 let wideCandy = function () {
@@ -143,23 +149,9 @@ let wideCandy = function () {
     "../wide-candy-pink.png",
     0.6,
     0.6,
-    currentTime
+    currentTime[0]
   );
 };
-
-function manipulateTime() {
-  if (currentTime > 0.7 && currentTime < 5) {
-    currentTime *= 1.01;
-  } else if (currentTime < 5) {
-    currentTime *= 1.02;
-  }
-}
-
-function sayHi() {
-  console.log("hi");
-}
-
-setInterval(manipulateTime, 1000);
 
 export {
   cornCandy,

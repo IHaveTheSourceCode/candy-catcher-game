@@ -23,6 +23,16 @@ import {
   mainTheme,
 } from "./createSounds";
 
+// import functions that control game cycle
+import {
+  updateScoreBoard,
+  updateTimeBoard,
+  updateCandiesAmountBoard,
+  startGame,
+  endGame,
+  removeLife,
+} from "./gameCycle";
+
 // module aliases
 let Engine = Matter.Engine,
   Render = Matter.Render,
@@ -36,20 +46,6 @@ let Engine = Matter.Engine,
 
 // create an engine
 let engine = Engine.create();
-
-// creates candies
-let candyAmount = 10;
-function addMoreCandies() {
-  if (candyAmount < 10) {
-    candyAmount += 1;
-  }
-}
-// setInterval(addMoreCandies, 10000);
-
-let x = function () {
-  appendCandies(engine, spawnCandies(candyAmount));
-};
-// setInterval(x, 1000);
 
 // create a renderer
 let render = Render.create({
@@ -97,7 +93,9 @@ Composite.add(engine.world, returnCandyContainer());
 Composite.add(engine.world, returnReferencePoints());
 
 // holds game stats
-let lives = 3;
+let lifes = [3];
+let score = [0];
+let candyAmount = [1];
 
 // boolean for checking for sound activation
 let soundActive = false;
@@ -113,6 +111,7 @@ Matter.Events.on(engine, "collisionStart", (e) => {
     ) {
       // logic for when good candy enters container
       Matter.World.remove(engine.world, e.pairs[0].bodyB);
+      updateScoreBoard(10, score);
       if (soundActive) {
         if (soundSwap == 0) {
           candyPositive1().play();
@@ -129,18 +128,22 @@ Matter.Events.on(engine, "collisionStart", (e) => {
     ) {
       // logic for when bad candy enters container
       Matter.World.remove(engine.world, e.pairs[0].bodyB);
+      removeLife(lifes);
       if (soundActive) {
         candyNegative().play();
+      }
+      // logic when lifes drop to 0
+      if (lifes == 0) {
+        currentTime[0] = 0.15;
+        endGame(candiesSpawnCycle, gameSpeedCycle, candiesQuanityCycle, score);
       }
     }
   }
 });
-x();
 
 // sets main theme music
 const mainThemeMusic = mainTheme();
 mainThemeMusic.loop = "loop";
-console.log(mainThemeMusic);
 mainTheme.volume = 0.01;
 
 // add event that will toggle all sounds on/off
@@ -156,3 +159,22 @@ document.querySelector(".toggle-sound").addEventListener("click", function () {
     mainThemeMusic.play();
   }
 });
+
+// game cycle global variables
+let candiesSpawnCycle = [null];
+let gameSpeedCycle = [null];
+let candiesQuanityCycle = [null];
+let quanityRefCycle = [null];
+
+startGame(
+  candiesSpawnCycle,
+  gameSpeedCycle,
+  candiesQuanityCycle,
+  candyAmount,
+  engine,
+  quanityRefCycle
+);
+
+// setTimeout(function () {
+//   endGame(candiesSpawnCycle, gameSpeedCycle, candiesQuanityCycle, score);
+// }, 5000);

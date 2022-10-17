@@ -93,6 +93,159 @@ audio {
   width: 0;
 }
 
+/* styles for start game pop up */
+.end-game-stats,
+.game-open-popup {
+  position: absolute;
+  width: 610px;
+  height: 1000px;
+  z-index: 1;
+  margin-left: 25px;
+}
+
+.game-open-popup,
+.end-game-stats {
+  background-color: #431752;
+  color: var(--color-orange);
+  font-size: 5rem;
+  font-family: var(--font-halloween);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 5px solid whitesmoke;
+  border-top: none;
+  border-bottom: none;
+}
+
+.instructions-header {
+  margin-top: 20px;
+}
+
+.pumpkin-popup {
+  margin-top: 20px;
+  width: 300px;
+  border-radius: 50%;
+}
+
+.instruction {
+  display: flex;
+  font-size: 2rem;
+  margin-top: 30px;
+  width: 410px;
+  margin-right: 180px;
+  margin-left: 25px;
+  border-radius: 0 50px 50px 0;
+  padding-right: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: inset -12px 0px 27px -3px rgba(66, 68, 90, 1);
+}
+
+.instruction > p:first-child {
+  font-size: 4rem;
+  margin-right: 30px;
+  margin-left: 25px;
+}
+
+.play-button {
+  position: absolute;
+  top: 615px;
+  left: 340px;
+  border-radius: 25px;
+  width: 400px;
+  height: 100px;
+  transform: rotate(-90deg);
+  background: rgb(249, 124, 41);
+  background: linear-gradient(
+    90deg,
+    rgba(249, 124, 41, 1) 0%,
+    rgba(203, 81, 0, 1) 100%
+  );
+  border: none;
+}
+
+.play-button > p {
+  color: rgb(255, 211, 211);
+  font-size: 6rem;
+  position: relative;
+  bottom: 185px;
+  left: 60px;
+  font-family: var(--font-halloween);
+}
+
+.play-button > p:hover {
+  cursor: pointer;
+  color: rgb(221, 177, 177);
+}
+
+.button-image {
+  width: 175px;
+  position: relative;
+  right: 150px;
+  bottom: 55px;
+}
+
+.corn-candy-single {
+  width: 80px;
+  position: absolute;
+  top: 460px;
+  right: 160px;
+  transform: rotate(-45deg);
+  transition: transform 0.4s;
+}
+
+.corn-candy-single:hover {
+  transform: rotate(0);
+}
+
+/* styles for game over pop up */
+.game-over-image {
+  width: 450px;
+  border-radius: 20%;
+}
+
+.game-over-header {
+  margin-top: 35px;
+  margin-bottom: 35px;
+  color: #cc1100;
+}
+
+.score-bar {
+  margin-top: 50px;
+  display: flex;
+  font-size: 4.4rem;
+  align-items: center;
+}
+
+.score-number {
+  margin-left: 25px;
+  font-size: 5rem;
+  color: orange;
+}
+
+.play-again-button {
+  margin-top: 75px;
+  padding: 35px;
+  font-size: 2.6rem;
+  border-radius: 50%;
+  font-family: var(--font-halloween);
+  background-color: var(--color-orange);
+  border: none;
+  box-shadow: 10px 10px 0px 0px rgb(228, 62, 2);
+}
+
+.play-again-button:hover {
+  cursor: pointer;
+  box-shadow: none;
+  transform: translate(10px, 10px);
+}
+
+.life {
+  width: 75px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
 @media (max-width: 1500px) {
   body {
     background-size: cover;
@@ -106,4 +259,8 @@ audio {
     width: 1000px;
     position: absolute;
   }
+}
+
+.hide {
+  display: none;
 }
