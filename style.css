@@ -51,7 +51,7 @@ canvas {
   border: 15px solid var(--color-orange);
   border-top: none;
   border-bottom: none;
-  margin-left: 25px;
+  margin-left: 15px;
   margin-bottom: 45px;
   position: absolute;
 }
