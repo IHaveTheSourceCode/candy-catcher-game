@@ -82,7 +82,7 @@ function restartGame(
   updateScoreBoard(0, scoreVar);
 
   // reset candies quanity
-  candyAmountVar[0] = 0;
+  candyAmountVar[0] = 1;
 
   // time resets already in main.js
 
