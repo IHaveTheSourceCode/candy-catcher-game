@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Candy Catcher</title>
+    <link rel="icon" href="../halloween-icon-page.png" />
+    <script type="module" crossorigin src="/candy-catcher-game/assets/index.8511a804.js"></script>
+    <link rel="stylesheet" href="/candy-catcher-game/assets/index.6ae13bfd.css">
+  </head>
+  <body>
+    <div class="end-game-stats hide">
+      <div class="game-over-header">game over!</div>
+      <img class="game-over-image" src="../game-over-image.jpg" alt="" />
+      <div class="score-bar">
+        <p>Your Score:</p>
+        <p class="score-number">10000</p>
+      </div>
+      <button class="play-again-button">
+        Play <br />
+        Again!
+      </button>
+    </div>
+    <div class="game-open-popup">
+      <img class="corn-candy-single" src="../candy-corn.png" alt="" />
+      <button class="play-button">
+        <img src="pumpkin-button.png" alt="" class="button-image" />
+        <p>Play !</p>
+      </button>
+      <p class="instructions-header">INSTRUCTIONS</p>
+      <img
+        src="game-popup-pumpkin.jpg"
+        class="pumpkin-popup"
+        alt="pumpkin image."
+      />
+      <div class="instructions">
+        <div class="instruction">
+          <p>1</p>
+          <p>Keep an eye on those nasty candy corn sweets.</p>
+        </div>
+        <div class="instruction">
+          <p>2</p>
+          <p>Throw them away as far as you can.</p>
+        </div>
+        <div class="instruction">
+          <p>3</p>
+          <p>Watchout for increasing rainfall of candies.</p>
+        </div>
+        <div class="instruction">
+          <p>4</p>
+          <p>Enjoy your delicious halloween sweets.</p>
+        </div>
+      </div>
+    </div>
+    <audio controls autoplay>
+      <source src="../game-theme.mp3" type="audio/mpeg" />
+      Your browser does not support the audio tag.
+    </audio>
+    <div class="scoreboard">
+      <div class="score">Score: 0</div>
+      <div class="game-speed">Game speed: 0</div>
+      <div class="candies-count">Candies quanity: 0</div>
+      <div class="lifes">
+        Lifes left:
+        <div>
+          <img class="life" src="../hearth.png" alt="" />
+          <img class="life" src="../hearth.png" alt="" />
+          <img class="life" src="../hearth.png" alt="" />
+        </div>
+      </div>
+    </div>
+    <div id="app-container">
+      <nav id="app-nav">
+        <button class="toggle-sound">
+          <img
+            alt="toggle sound button"
+            src="../volume-off-icon.png"
+            class="sound-image"
+          />
+        </button>
+      </nav>
+      <!-- <div class="pumpkin-image">
+        <img
+          src="../my-image.png"
+          alt="pumpkin."
+          class="pumpkin-main"
+          draggable="false"
+        />
+      </div> -->
+    </div>
+    <img class="alert-image" src="../small-screens-info.png" alt="" />
+  </body>
+</html>
