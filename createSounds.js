@@ -1,7 +1,7 @@
 // url must be string
 function createSound(url) {
   return function () {
-    return new Audio("./" + url);
+    return new Audio("/sounds/" + url);
   };
 }
 
