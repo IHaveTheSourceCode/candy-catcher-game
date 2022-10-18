@@ -103,7 +103,7 @@ function restartGame(
 
 function createLife() {
   let life = document.createElement("img");
-  life.src = "../hearth.png";
+  life.src = "./hearth.png";
   life.alt = "";
   life.classList.add("life");
   return life;

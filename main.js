@@ -166,11 +166,11 @@ mainTheme.volume = 0.01;
 document.querySelector(".toggle-sound").addEventListener("click", function () {
   let img = document.querySelector(".sound-image");
   if (soundActive) {
-    img.src = "../volume-off-icon.png";
+    img.src = "./volume-off-icon.png";
     soundActive = false;
     mainThemeMusic.pause();
   } else {
-    img.src = "../volume-on-icon.png";
+    img.src = "./volume-on-icon.png";
     soundActive = true;
     mainThemeMusic.play();
   }
