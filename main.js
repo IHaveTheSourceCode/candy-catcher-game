@@ -31,6 +31,7 @@ import {
   startGame,
   endGame,
   removeLife,
+  restartGame,
 } from "./gameCycle";
 
 // module aliases
@@ -100,6 +101,9 @@ let candyAmount = [1];
 // boolean for checking for sound activation
 let soundActive = false;
 
+// boolean for checking if game is active
+let gameActive = false;
+
 // for swapping sound effects
 let soundSwap = 0;
 
@@ -111,8 +115,10 @@ Matter.Events.on(engine, "collisionStart", (e) => {
     ) {
       // logic for when good candy enters container
       Matter.World.remove(engine.world, e.pairs[0].bodyB);
-      updateScoreBoard(10, score);
-      if (soundActive) {
+      if (gameActive) {
+        updateScoreBoard(100, score);
+      }
+      if (soundActive && gameActive) {
         if (soundSwap == 0) {
           candyPositive1().play();
           soundSwap = 1;
@@ -129,13 +135,23 @@ Matter.Events.on(engine, "collisionStart", (e) => {
       // logic for when bad candy enters container
       Matter.World.remove(engine.world, e.pairs[0].bodyB);
       removeLife(lifes);
-      if (soundActive) {
+      if (soundActive && gameActive) {
         candyNegative().play();
       }
       // logic when lifes drop to 0
       if (lifes == 0) {
         currentTime[0] = 0.15;
-        endGame(candiesSpawnCycle, gameSpeedCycle, candiesQuanityCycle, score);
+        gameActive = false;
+        if (soundActive) {
+          gameOver().play();
+        }
+        endGame(
+          candiesSpawnCycle,
+          gameSpeedCycle,
+          candiesQuanityCycle,
+          score,
+          quanityUpdateCycle
+        );
       }
     }
   }
@@ -164,17 +180,42 @@ document.querySelector(".toggle-sound").addEventListener("click", function () {
 let candiesSpawnCycle = [null];
 let gameSpeedCycle = [null];
 let candiesQuanityCycle = [null];
-let quanityRefCycle = [null];
+let quanityUpdateCycle = [null];
 
-startGame(
-  candiesSpawnCycle,
-  gameSpeedCycle,
-  candiesQuanityCycle,
-  candyAmount,
-  engine,
-  quanityRefCycle
-);
+// set buttons listeners and audio events
+let playButton = document.querySelector(".play-button");
+playButton.addEventListener("click", function () {
+  gameActive = true;
+  if (soundActive) {
+    buttonClick().play();
+  }
+  // hide game start UI and lunch the game
+  let gameStartUI = document.querySelector(".game-open-popup");
+  gameStartUI.classList.toggle("hide");
+  startGame(
+    candiesSpawnCycle,
+    gameSpeedCycle,
+    candiesQuanityCycle,
+    candyAmount,
+    engine,
+    quanityUpdateCycle
+  );
+});
 
-// setTimeout(function () {
-//   endGame(candiesSpawnCycle, gameSpeedCycle, candiesQuanityCycle, score);
-// }, 5000);
+let restartGameButton = document.querySelector(".play-again-button");
+restartGameButton.addEventListener("click", function () {
+  if (soundActive) {
+    buttonClick().play();
+  }
+  restartGame(
+    candiesSpawnCycle,
+    gameSpeedCycle,
+    candiesQuanityCycle,
+    candyAmount,
+    engine,
+    quanityUpdateCycle,
+    lifes,
+    score
+  );
+  gameActive = true;
+});

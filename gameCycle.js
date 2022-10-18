@@ -19,6 +19,7 @@ function startGame(
   function startSpawningCandies() {
     appendCandies(targetEngine, spawnCandies(candyAmountVar[0]));
   }
+  startSpawningCandies();
   spawnCycle[0] = setInterval(startSpawningCandies, 2000);
 
   // start multiplying time
@@ -28,6 +29,7 @@ function startGame(
     } else if (currentTime[0] < 5) {
       currentTime[0] *= 1.02;
     }
+    updateTimeBoard(currentTime[0]);
   }
   timeCycle[0] = setInterval(manipulateTime, 1000);
 
@@ -38,16 +40,23 @@ function startGame(
     }
   }
   quanityCycle[0] = setInterval(addMoreCandies, 10000);
-  quanityUpdateCycle = setInterval(function () {
-    updateCandiesAmountBoard(1);
+  quanityUpdateCycle[0] = setInterval(function () {
+    updateCandiesAmountBoard(candyAmountVar[0]);
   }, 1000);
 }
 
-function endGame(spawnCycle, timeCycle, quanityCycle, score) {
+function endGame(
+  spawnCycle,
+  timeCycle,
+  quanityCycle,
+  score,
+  quanityUpdateCycle
+) {
   // clears intervals
   clearInterval(spawnCycle[0]);
   clearInterval(timeCycle[0]);
   clearInterval(quanityCycle[0]);
+  clearInterval(quanityUpdateCycle[0]);
 
   // show score and restart game button
   let gameOverPopUp = document.querySelector(".end-game-stats");
@@ -56,31 +65,47 @@ function endGame(spawnCycle, timeCycle, quanityCycle, score) {
   scoreElement.textContent = score[0];
 }
 
-function restartGame(lifesVar, scoreVar, candiesAmountVar, timeMultipler) {
-  let restartButton = document.querySelector(".play-again-button");
-  // hide endgame popup on button click
-  restartButton.addEventListener("click", function () {
-    document.querySelector(".end-game-stats").classList.toggle("hide");
-  });
-
+function restartGame(
+  spawnCycle,
+  timeCycle,
+  quanityCycle,
+  candyAmountVar,
+  targetEngine,
+  quanityUpdateCycle,
+  lifesVar,
+  scoreVar
+) {
   restoreLifes(lifesVar);
 
   // reset score
+  scoreVar[0] = 0;
   updateScoreBoard(0, scoreVar);
 
   // reset candies quanity
-  candiesAmountVar[0] = 0;
+  candyAmountVar[0] = 0;
 
   // time resets already in main.js
 
+  // hides endgame UI
+  let endgameUI = document.querySelector(".end-game-stats");
+  endgameUI.classList.toggle("hide");
+
   // start game
+  startGame(
+    spawnCycle,
+    timeCycle,
+    quanityCycle,
+    candyAmountVar,
+    targetEngine,
+    quanityUpdateCycle
+  );
 }
 
 function createLife() {
   let life = document.createElement("img");
   life.src = "../hearth.png";
   life.alt = "";
-  life.class = "life";
+  life.classList.add("life");
   return life;
 }
 
@@ -101,7 +126,7 @@ function restoreLifes(lifesVar) {
 function updateScoreBoard(score, scoreVar) {
   let scoreBoard = document.querySelector(".score");
   scoreVar[0] += score;
-  scoreBoard.textContent = "Score: " + scoreVar[0];
+  scoreBoard.textContent = "Score: " + scoreVar;
 }
 
 function updateTimeBoard(speed) {
@@ -152,4 +177,5 @@ export {
   startGame,
   endGame,
   removeLife,
+  restartGame,
 };

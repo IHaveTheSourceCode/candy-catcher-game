@@ -1,7 +1,12 @@
 import Matter from "matter-js";
 
 function createStaticRectangle(x, y, width, rotation) {
-  let rectangle = Matter.Bodies.rectangle(x, y, width, 10, { isStatic: true });
+  let rectangle = Matter.Bodies.rectangle(x, y, width, 10, {
+    isStatic: true,
+    render: {
+      fillStyle: "transparent",
+    },
+  });
   Matter.Body.rotate(rectangle, rotation);
   return rectangle;
 }
@@ -41,7 +46,7 @@ function createReferencePoint(x, y, width, height, rotation) {
     isStatic: true,
     label: "refPoint",
     render: {
-      // fillStyle: "transparent",
+      fillStyle: "transparent",
     },
   });
   Matter.Body.rotate(referencePoint, rotation);
