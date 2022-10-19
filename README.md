@@ -1,4 +1,4 @@
-# [Live link](https://candy-catcher-game-brt7w7gzd-ihavethesourcecode.vercel.app/)
+# [Live link](https://candy-catcher-game.vercel.app/)
 
 ## Candy catcher game was made with the help of [matter.js library](https://brm.io/matter-js/).
 
